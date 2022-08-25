@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 // use App\Http\Requests\StoreTaskRequest;
 // use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
-use Illuminate\Http\Request;
-use Facade\Ignition\Tabs\Tab;
+// use Illuminate\Http\Request;
+use App\Http\Requests\TaskRequest;
+// use Facade\Ignition\Tabs\Tab;
 
 class TaskController extends Controller
 {
@@ -24,10 +25,10 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Illuminate\Http\Request  $request
+     * @param  TaskRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(TaskRequest $request)
     {
         $task = Task::create($request->all());
 
@@ -51,11 +52,11 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Illuminate\Http\Request  $request
+     * @param  TaskRequest  $request
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, Task $task)
+    public function update(TaskRequest $request, Task $task)
     {
         $task->title = $request->title;
 
