@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-// use App\Http\Requests\StoreTaskRequest;
-// use App\Http\Requests\UpdateTaskRequest;
+
 use App\Models\Task;
-// use Illuminate\Http\Request;
 use App\Http\Requests\TaskRequest;
-// use Facade\Ignition\Tabs\Tab;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
@@ -74,6 +72,23 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         return $task -> delete()
+            ? response()->json($task)
+            : response()->json([], 500);
+    }
+
+    /**
+     * is_donenの更新
+     * 
+     * @param Task $task
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+
+    public function updateDone( Task $task, Request $request )
+    {
+        $task->is_done = $request->is_done;
+
+        return $task->update()
             ? response()->json($task)
             : response()->json([], 500);
     }
