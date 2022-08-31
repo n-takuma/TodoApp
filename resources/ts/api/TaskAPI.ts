@@ -14,7 +14,16 @@ const updateDoneTask = async ({ id, is_done }: Task) => {
     return data
 }
 
+const createTask = async (title: string) => {
+    const { data } = await axios.post<Task>(
+        `/api/tasks`,
+        { title: title } //第2引数には送信するデータ
+    )
+    return data
+}
+
 export {
     getTasks,
-    updateDoneTask
+    updateDoneTask,
+    createTask
 }
